@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TodoList删除功能</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <div>
+            <input v-model="inputValue" />
+            <button @click="handleSubmit">提交</button>
+        </div>
+        <ul>
+            <todo-item v-for="(item,index) of list" 
+            :key="index" 
+            :content="item" 
+            :index="index" 
+            @delete="handleDelete"
+            >
+            </todo-item>
+        </ul>
+    </div>
+    <script>
+        // 全局组件  每个组件就是一个实例
+        Vue.component('todo-item', {
+            // 以属性的形式传值
+            props: ['content', 'index'],
+            template: '<li @click="handleClick">{{content}}</li>',
+            methods: {
+                handleClick: function () {
+                    this.$emit('delete', this.index)
+                }
+            }
+        })
+        // 父组件与子组件之间的通信 ： 
+        // 1.父组件以参数的形式向子组件传值
+        // 2.子组件发布事件，父组件订阅了事件
+        new Vue({
+            el: "#root",
+            data: {
+                inputValue: '',
+                list: []
+            },
+            methods: {
+                handleSubmit: function () {
+                    this.list.push(this.inputValue)
+                    this.inputValue = ""
+                },
+                handleDelete: function (index) {
+                    this.list.splice(index, 1)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

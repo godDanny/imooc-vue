@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-on 绑定事件</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="demo02">
+        <div @click="handleClick">{{content}}</div>
+        <!-- <div v-on:click="handleClick">{{content}}</div> -->
+    </div>
+    <script>
+        new Vue({
+            el: "#demo02",
+            data: {
+                content: "hello"
+            },
+            methods: {
+                handleClick: function () {
+                    // 编程思维：改变数据的显示不需要直接操作dom，只要操作数据即可
+                    // 面向dom编程 => 面向数据编程
+                    this.content = "world"
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue入门</title>
+    <script src="./vue.js"></script>
+    <!-- 为什么将vue.js放在<head>之间 ，而不将vue.js放在标签<body>之间呢？因为会发生抖屏 -->
+</head>
+<body>
+    <div id="demo">
+       <h1>{{msg}}</h1> 
+    </div>
+    <script>
+        new Vue({
+            el:"#demo",
+            data:{
+                msg:"hello world"
+                
+            }
+        })
+    </script>
+</body>
+</html>
